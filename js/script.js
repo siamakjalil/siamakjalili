@@ -16,7 +16,7 @@ var forceEn = window.location.hash.toLowerCase().indexOf("en") != -1;
 var showHolderwinFirst = window.location.hash.toLowerCase().indexOf("holder") != -1;
 
 const faZeroCharCode = String('۰').charCodeAt(0);
-var myFirstDayOfJon = new Date("Feb 26 2009 08:30:00");
+var myFirstDayOfJon = new Date("April 29 2016 08:30:00");
 const millisecondsInYear = 3.1556926 * Math.pow(10,10) ;
 const dateLength = 1000000000 ;
 
