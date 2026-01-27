@@ -268,6 +268,44 @@ h2 {
                     font-size: 16px;
                     line-height: 170%;
                 }
+.skills {
+    margin-top: 120px;
+    padding-bottom: 120px;
+}
+.skills-badges {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 42px;
+    column-gap: 24px;
+    justify-content: center;
+}
+
+    .skills-badges > div {
+        width: calc(20% - 24px); /* 5 تا در هر ردیف */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        border-radius: 52px;
+        border: 1px solid;
+        padding-bottom: 8px;
+        padding-top: 8px;
+    }
+
+.skills-badges img {
+    max-width: 32px;
+    height: auto;
+    margin-bottom: 0;
+    margin-right: 8px;
+}
+
+    .skills-badges text { 
+        font-weight: 400; 
+        font-size: 18px; 
+        line-height: 100%; 
+}
+
 
 @media (min-width: 992px) {
 }
@@ -366,7 +404,7 @@ h2 {
 
     .experience {
         margin-top: 48px;
-        padding-bottom: 120px;
+        padding-bottom: 48px;
     }
 
         .experience .experience-cards {
@@ -406,6 +444,27 @@ h2 {
                     font-size: 12px; 
                     line-height: 170%; 
                 }
+    .skills {
+        padding-bottom: 48px;
+    }
+    .skills-badges {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 16px;
+        column-gap: 16px;
+    }
+
+    .skills-badges > div {
+        width: calc(25% - 16px); /* 5 تا در هر ردیف */ 
+    }
+
+    .skills-badges img { 
+        margin-right: 0;
+    }
+
+    .skills-badges text {
+        display: none;
+    }
 }
 
 
