@@ -463,6 +463,16 @@ h2 {
             margin-bottom: 24px;
         }
 
+footer {
+    max-width: 100%;
+    background-color: var(--black88);
+}
+.footer {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 @media (min-width: 992px) {
 }
 
