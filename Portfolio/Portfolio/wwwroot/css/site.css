@@ -222,7 +222,7 @@ h2 {
 
     .experience .experience-cards {
         --bs-gutter-x: 50px;
-        --bs-gutter-y: 48px;
+        --bs-gutter-y: 50px;
     }
 
         .experience .experience-cards .card {
@@ -268,10 +268,12 @@ h2 {
                     font-size: 16px;
                     line-height: 170%;
                 }
+
 .skills {
     margin-top: 120px;
     padding-bottom: 120px;
 }
+
 .skills-badges {
     display: flex;
     flex-wrap: wrap;
@@ -293,18 +295,81 @@ h2 {
         padding-top: 8px;
     }
 
-.skills-badges img {
-    max-width: 32px;
-    height: auto;
-    margin-bottom: 0;
-    margin-right: 8px;
+    .skills-badges img {
+        max-width: 32px;
+        height: auto;
+        margin-bottom: 0;
+        margin-right: 8px;
+    }
+
+    .skills-badges text {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 100%;
+    }
+
+.latest-projects {
+    margin-top: 120px;
+    padding-bottom: 120px;
 }
 
-    .skills-badges text { 
-        font-weight: 400; 
-        font-size: 18px; 
-        line-height: 100%; 
-}
+    .latest-projects .latest-projects-cards {
+        --bs-gutter-x: 50px;
+        --bs-gutter-y: 50px;
+    }
+
+        .latest-projects .latest-projects-cards .card {
+            box-shadow: 0px 4px 4px 0px #00000040;
+            background-color: var(--black88);
+            border-radius: 10px;
+            color: var(--white);
+            height: 100%;
+        }
+
+            .latest-projects .latest-projects-cards .card .card-body {
+                padding: 25px;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+                .latest-projects .latest-projects-cards .card .card-body .head-section {
+                    display: flex;
+                    gap: 16px;
+                    margin-bottom: 16px;
+                    flex-direction: column;
+                }
+
+                    .latest-projects .latest-projects-cards .card .card-body .head-section img {
+                        width: 100%;
+                    }
+
+                    .latest-projects .latest-projects-cards .card .card-body .head-section .head-text h3 {
+                        font-weight: 600;
+                        font-size: 24px;
+                        margin-bottom: 0;
+                        color: var(--blue);
+                    }
+
+                .latest-projects .latest-projects-cards .card .card-body .text {
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 170%;
+                }
+
+                .latest-projects .latest-projects-cards .card .card-body .tags {
+                    display: flex;
+                    gap: 8px;
+                    margin-top: auto;
+                    padding-top: 16px;
+                }
+
+                    .latest-projects .latest-projects-cards .card .card-body .tags > div {
+                        border: 1px solid;
+                        border-radius: 4px;
+                        padding: 4px;
+                        font-size: 14px;
+                    }
 
 
 @media (min-width: 992px) {
@@ -426,27 +491,29 @@ h2 {
                         width: 44px;
                     }
 
-                    .experience .experience-cards .card .card-body .head-section .head-text h3 { 
-                        font-weight: 600; 
-                        font-size: 18px; 
-                        line-height: 100%; 
+                    .experience .experience-cards .card .card-body .head-section .head-text h3 {
+                        font-weight: 600;
+                        font-size: 18px;
+                        line-height: 100%;
                     }
 
-                    .experience .experience-cards .card .card-body .head-section .head-text p { 
-                        font-weight: 400; 
-                        font-size: 11px; 
-                        line-height: 100%; 
+                    .experience .experience-cards .card .card-body .head-section .head-text p {
+                        font-weight: 400;
+                        font-size: 11px;
+                        line-height: 100%;
                     }
 
                 .experience .experience-cards .card .card-body .text {
                     font-family: Open Sans;
-                    font-weight: 400; 
-                    font-size: 12px; 
-                    line-height: 170%; 
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 170%;
                 }
+
     .skills {
         padding-bottom: 48px;
     }
+
     .skills-badges {
         display: flex;
         flex-wrap: wrap;
@@ -454,17 +521,37 @@ h2 {
         column-gap: 16px;
     }
 
-    .skills-badges > div {
-        width: calc(25% - 16px); /* 5 تا در هر ردیف */ 
+        .skills-badges > div {
+            width: calc(25% - 16px); /* 5 تا در هر ردیف */
+        }
+
+        .skills-badges img {
+            margin-right: 0;
+        }
+
+        .skills-badges text {
+            display: none;
+        }
+
+    .latest-projects .latest-projects-cards {
+        --bs-gutter-y: 24px;
     }
 
-    .skills-badges img { 
-        margin-right: 0;
-    }
+        .latest-projects .latest-projects-cards .card {
+            box-shadow: 0px 4px 4px 0px #00000040;
+            background-color: var(--black88);
+            border-radius: 10px;
+            color: var(--white);
+            height: 100%;
+        }
 
-    .skills-badges text {
-        display: none;
-    }
+            .latest-projects .latest-projects-cards .card .card-body {
+                padding: 16px;
+            }
+
+                .latest-projects .latest-projects-cards .card .card-body .tags > div {
+                    font-size: 12px;
+                }
 }
 
 
