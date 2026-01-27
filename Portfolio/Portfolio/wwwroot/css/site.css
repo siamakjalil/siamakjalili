@@ -376,7 +376,7 @@ h2 {
     padding-bottom: 120px;
 }
 
-    .other-projects .other-projects-cards { 
+    .other-projects .other-projects-cards {
         --bs-gutter-y: 64px;
     }
 
@@ -400,6 +400,7 @@ h2 {
 
                     .other-projects .other-projects-cards .card .card-body .head-section img {
                         width: 56px;
+                        border-radius: 4px;
                     }
 
                     .other-projects .other-projects-cards .card .card-body .head-section .head-text h3 {
@@ -423,6 +424,44 @@ h2 {
                     font-size: 16px;
                     line-height: 170%;
                 }
+
+.contact {
+    margin-top: 120px;
+    padding-bottom: 120px;
+}
+
+    .contact .text {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 170%;
+        text-align: justify;
+        margin-bottom: 88px;
+    }
+
+    .contact .btn {
+        font-weight: 600;
+        background-color: var(--blue);
+        -ms-border-radius: var(--radius34);
+        border-radius: var(--radius34);
+        padding: 8px 14px;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 88px;
+        color: white;
+    }
+
+    .contact .social {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+        align-items: center;
+    }
+
+        .contact .social img {
+            width: 24px;
+            margin-bottom: 24px;
+        }
 
 @media (min-width: 992px) {
 }
