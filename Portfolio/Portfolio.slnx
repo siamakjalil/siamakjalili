@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="Core/Core.csproj" Id="c200008b-6e0d-44bd-ac88-15be167c109c" />
   <Project Path="Portfolio/Portfolio.csproj" />
 </Solution>
