@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Core.Enum;
+using System.ComponentModel.DataAnnotations;
 
 namespace Core.Models
 {
@@ -8,13 +9,11 @@ namespace Core.Models
         [MaxLength(250)]
         public string? Title { get; set; }
         [MaxLength(250)]
-        public string? JobTitle { get; set; }
+        public string? JobStyle { get; set; }
         [MaxLength(250)]
         public string? Company { get; set; }
         [MaxLength(250)]
         public string? Image { get; set; }
-        [MaxLength(250)]
-        public string? Logo { get; set; }
         [MaxLength(250)]
         public string? Url { get; set; }
         [MaxLength(750)]
@@ -25,5 +24,6 @@ namespace Core.Models
         public string? ShortText { get; set; }
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
+        public ExperienceType ExperienceType { get; set; }
     }
 }

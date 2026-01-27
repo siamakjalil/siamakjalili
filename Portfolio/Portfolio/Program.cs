@@ -1,7 +1,11 @@
+using Core.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.ConfigurePersistenceServices(builder.Configuration);
 
 var app = builder.Build();
 
