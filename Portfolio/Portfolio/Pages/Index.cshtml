@@ -1,4 +1,5 @@
 ﻿@page
+@using Core.Enum
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -8,8 +9,8 @@
     <partial name="_Heading" />
 </header>
 <partial name="_About" />
-<partial name="_Experience" />
-<partial name="_Skills" />
-<partial name="_LatestProjects" />
-<partial name="_OtherProjects" />
+<partial name="_Experience" model="@Model.Experiences.Where(u=>u.ExperienceType == ExperienceType.Experience).ToList()"/>
+<partial name="_Skills" model="Model.Skills"/>
+<partial name="_LatestProjects" model="@Model.Experiences.Where(u=>u.ExperienceType == ExperienceType.LatestProjects).ToList()"/>
+<partial name="_OtherProjects" model="@Model.Experiences.Where(u => u.ExperienceType == ExperienceType.OtherProjects).ToList()" />
 <partial name="_Contact" />

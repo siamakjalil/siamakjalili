@@ -283,7 +283,7 @@ h2 {
 }
 
     .skills-badges > div {
-        width: calc(20% - 24px); /* 5 تا در هر ردیف */
+        width: calc(25% - 24px); /* 5 تا در هر ردیف */
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -304,7 +304,7 @@ h2 {
 
     .skills-badges text {
         font-weight: 400;
-        font-size: 18px;
+        font-size: 14px;
         line-height: 100%;
     }
 
@@ -623,16 +623,16 @@ footer {
     }
 
         .skills-badges > div {
-            width: calc(25% - 16px); /* 5 تا در هر ردیف */
+            width: calc(50% - 16px); /* 5 تا در هر ردیف */
         }
 
         .skills-badges img {
             margin-right: 0;
         }
 
-        .skills-badges text {
+        /*.skills-badges text {
             display: none;
-        }
+        }*/
 
     .latest-projects .latest-projects-cards {
         --bs-gutter-y: 24px;

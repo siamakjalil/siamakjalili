@@ -22,8 +22,9 @@ namespace Core.Models
         public string? Tags { get; set; }
         [MaxLength(350)]
         public string? ShortText { get; set; }
-        public DateTime DateStart { get; set; }
-        public DateTime DateEnd { get; set; }
+        public string? DateStart { get; set; }
+        public string? DateEnd { get; set; }
+        public int Index { get; set; }
         public ExperienceType ExperienceType { get; set; }
     }
 }

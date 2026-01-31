@@ -11,4 +11,8 @@
         public const string Email = "siamakjalilii@gmail.com";
         public const string EmailTo = "mailto:siamakjalilii@gmail.com";
     }
+    public static class ImgPath
+    {
+        public const string Images = "/images/"; 
+    }
 }

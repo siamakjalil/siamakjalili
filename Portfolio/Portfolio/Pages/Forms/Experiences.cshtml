@@ -1,0 +1,136 @@
+﻿@page
+@using Core.Enum
+@using Portfolio.Classes
+@model Portfolio.Pages.Forms.ExperiencesModel
+@{
+}
+
+<div class="row justify-content-md-center">
+    <div class="col-md-12 col-lg-12 col-12">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <h5 class="mb-3">information </h5> 
+                            <input type="hidden" asp-for="@Model.Experience.Id" />
+                            <input type="hidden" asp-for="@Model.Experience.Image" />
+                            <div class="row mb-4">
+                                <div class="col-lg-6 col-md-6 col-6 mb-2">
+                                    <label asp-for="Experience.Title">Title : </label>
+                                    <input type="text" asp-for="Experience.Title" class="form-control" autocomplete="off" />
+                                    <span asp-validation-for="Experience.Title" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-6 mb-2">
+                                    <label asp-for="Experience.JobStyle">JobStyle : </label>
+                                    <input asp-for="Experience.JobStyle" class="form-control" autocomplete="off" />
+                                    <span asp-validation-for="Experience.JobStyle" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-6 mb-2">
+                                    <label asp-for="Experience.Company">Company : </label>
+                                    <input  asp-for="Experience.Company" class="form-control" autocomplete="off" />
+                                    <span asp-validation-for="Experience.Company" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-6 mb-2">
+                                    <label asp-for="Experience.Url">Url : </label>
+                                    <input  asp-for="Experience.Url" class="form-control" autocomplete="off" />
+                                    <span asp-validation-for="Experience.Url" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-6 mb-2">
+                                    <label asp-for="Experience.Tags">Tags : </label>
+                                    <input asp-for="Experience.Tags" class="form-control" autocomplete="off" />
+                                    <span asp-validation-for="Experience.Tags" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-6 mb-2">
+                                    <label asp-for="Experience.ExperienceType">ExperienceType :</label>
+                                    <select class="form-select" asp-for="Experience.ExperienceType" asp-items="Html.GetEnumSelectList<ExperienceType>()">
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-6 mb-2">
+                                    <label asp-for="Experience.DateStart">DateStart : </label>
+                                    <input asp-for="Experience.DateStart" class="form-control" autocomplete="off" />
+                                    <span asp-validation-for="Experience.DateStart" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-6 mb-2">
+                                    <label asp-for="Experience.DateEnd">DateEnd : </label>
+                                    <input asp-for="Experience.DateEnd" class="form-control" autocomplete="off" />
+                                    <span asp-validation-for="Experience.DateEnd" class="text-danger"></span>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-12 mb-2">
+                                    <label asp-for="Experience.Text">Text : </label>
+                                    <textarea asp-for="Experience.Text" class="form-control" autocomplete="off"></textarea>
+                                    <span asp-validation-for="Experience.Text" class="text-danger"></span>
+                                </div> 
+                                <div class="col-lg-6 col-md-6 col-6 mb-2">
+                                    <label asp-for="Experience.Image">Image : </label>
+                                    <input type="file" name="ImgUp" id="ImgUp" class="form-control mb-2" /> 
+                                    <span asp-validation-for="Experience.Image" class="text-danger"></span>
+                                    @if (!string.IsNullOrEmpty(Model.Experience?.Image))
+                                    {
+                                        <img id="imgPreview" src="@ImgPath.Images@Model.Experience.Image" style="max-width: 120px" class="img-thumbnail" alt="You have not selected a photo yet" />
+                                    }
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-6 mb-2">
+                                    <label asp-for="Experience.Index">Index : </label>
+                                    <input asp-for="Experience.Index" class="form-control" autocomplete="off" />
+                                    <span asp-validation-for="Experience.Index" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-1 mt-3 justify-content-end">
+                                <div class="col-lg-2 col-md-4 col-4 mt-auto">
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-primary" type="submit" title="Save"><i class="fa fa-save"></i> Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    Index
+                                </th> 
+                                <th>
+                                    Title
+                                </th> 
+                                <th>
+                                    Company
+                                </th>
+                                <th>
+                                    ExperienceType
+                                </th>
+                                <th>
+                                    Image
+                                </th>
+                                <th> 
+                                </th>
+                            </tr>
+                            @foreach (var item in Model.Experiences)
+                            {
+                                <tr>
+                                    <td>@item.Index</td>
+                                    <td>@item.Title</td> 
+                                    <td>@item.Company</td>
+                                    <td>@item.ExperienceType</td>
+                                    <td><img src="@ImgPath.Images@item.Image" width="64"/></td>
+                                    <td><a class="btn btn-sm btn-secondary" href="./Experiences?id=@item.Id">Edit</a></td>
+                                </tr>
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts { 
+    <partial name="_ValidationScriptsPartial" />
+}

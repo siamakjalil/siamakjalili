@@ -1,56 +1,45 @@
-﻿<section class="latest-projects">
+﻿@using Portfolio.Classes
+@model List<Core.Models.Experience>
+<section class="latest-projects">
     <div class="row justify-content-lg-center">
         <h2>
             Latest Projects
         </h2>
         <div class="col-12 col-lg-10">
             <div class="row justify-content-center latest-projects-cards">
-                @for (int i = 0; i < 2; i++)
+                @foreach (var item in Model)
                 {
+                    var tags = item.Tags?.Split(",");
                     <div class="col-12 col-lg-6">
                         <div class="card">
                             <div class="card-body">
                                 <div class="head-section">
-                                    <img src="/images/projects/Frame 69-1.png" />
+                                    <img src="@ImgPath.Images@item.Image" alt="@item.Title.AltBuilder()" />
                                     <div class="head-text">
-                                        <h3>Allameh Helli</h3>
+                                        <h3>@item.Title</h3>
                                     </div>
                                 </div>
                                 <div class="text">
-                                    Developing a customer parcel registration system by specifying the origin and destination, sending the order to the nearest driver
-                                    to pick up the order
+                                    @Html.Raw(item.Text)
                                 </div>
                                 <div class="tags">
-                                    @for (int j = 0; j < 4; j++) 
+                                    @if (tags != null)
                                     {
-                                        <div>
-                                            .net
-                                        </div>
+                                        foreach (var tag in tags)
+                                        {
+                                            <div>
+                                                @tag
+                                            </div>
+                                        }
                                     }
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="head-section">
-                                    <img src="/images/projects/Frame 69-1.png" />
-                                    <div class="head-text">
-                                        <h3>Allameh Helli</h3>
+                                @if (!string.IsNullOrEmpty(item.Url))
+                                {
+                                    <div> 
+                                        <br/>
+                                        <a href="@item.Url" target="_blank">@item.Url</a>
                                     </div>
-                                </div>
-                                <div class="text">
-                                    Develop sport Eshop website with my Eshop builder core.
-                                </div>
-                                <div class="tags">
-                                    @for (int j = 0; j < 4; j++) 
-                                    {
-                                        <div>
-                                            .net
-                                        </div>
-                                    }
-                                </div>
+                                }
                             </div>
                         </div>
                     </div>
