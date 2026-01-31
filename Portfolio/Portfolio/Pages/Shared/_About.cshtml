@@ -1,4 +1,7 @@
 ﻿@using Portfolio.Classes
+@{
+    var year = DateTime.Now.Year - 2017;
+}
 <section class="about">
     <div class="row">
         <h2>
@@ -9,14 +12,15 @@
         </div>
         <div class="col-12 col-lg-6 col-md-6">
             <p>
-                I am a freelance full-stack developer with strong experience in C#, ASP.NET MVC,
-                jQuery, AJAX, and modern front-end frameworks such as Bootstrap.
-                I hold an engineering degree in computer hardware and have worked on
-                more than 30 large-scale projects across various sectors, including government,
-                media, and education. I enjoy building scalable, efficient web applications
-                and delivering customized solutions that solve real-world problems.
-                With a results-driven mindset and strong analytical skills,
-                I always aim to create reliable and high-quality digital products
+                With over @year years of experience in software development,
+                my journey started as a web developer and quickly evolved
+                into full-stack development through hands-on projects,
+                persistence, and a strong passion for building real products.
+                I have worked on a wide range of software systems, turning complex business needs and ideas into scalable,
+                production-ready solutions. Today, I contribute to projects as a Technical Lead and Product Technical Manager,
+                where I not only focus on architecture and
+                delivery but also enjoy mentoring junior developers and helping teams 
+                grow by sharing practical experience and real-world knowledge.
             </p>
             <div class="row justify-content-center info">
                 <div class="col-12 col-lg-6 col-md-6">
@@ -44,7 +48,7 @@
                 <div class="col-12 col-lg-4 col-md-4">
                     <div class="row">
                         <div class="col-4 label">Age: </div>
-                        <div class="col-8 value">33</div>
+                        <div class="col-8 value">@(DateTime.Now.Year - 1993)</div>
                     </div>
                     <div class="row">
                         <div class="col-4 label">Education: </div>
@@ -65,7 +69,7 @@
                     <div class="row">
                         <div class="col-12 col-lg-4 text-center">
                             <p class="count">
-                                10+
+                                @(year)+
                             </p>
                             <p class="text">
                                 Years of experience
@@ -73,7 +77,7 @@
                         </div>
                         <div class="col-12 col-lg-4 text-center">
                             <p class="count">
-                                50+
+                                45+
                             </p>
                             <p class="text">
                                 Completed projects
@@ -81,7 +85,7 @@
                         </div>
                         <div class="col-12 col-lg-4 text-center">
                             <p class="count">
-                                30+
+                                25+
                             </p>
                             <p class="text">
                                 Satisfied clients
