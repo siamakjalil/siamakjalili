@@ -2,19 +2,22 @@
 @model List<Core.Models.Skill>
 <section class="skills">
     <div class="row justify-content-lg-center">
-        <h2>
-            Skills
-        </h2> 
-        <div class="col-12 col-lg-10">
-            <div class="skills-badges"> 
+        <div class="col-12">
+            <h2>
+                Skills
+            </h2>
+        </div>
+        <div class="col-12 col-lg-12 col-xl-10">
+            <div class="skills-badges">
                 @foreach (var skill in Model)
                 {
-                    <div class="">
+                    var fontClass = skill.Title!.Length > 18 ? "lg" : "";
+                    <div class="@fontClass">
                         <img src="@ImgPath.Images@skill.Image" alt="@skill.Title.AltBuilder()" />
                         <text>@skill.Title</text>
                     </div>
-                } 
+                }
             </div>
         </div>
-    </div> 
+    </div>
 </section>

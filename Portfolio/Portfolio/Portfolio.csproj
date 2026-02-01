@@ -6,10 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\images\icon\" />
-  </ItemGroup>
-
 	<ItemGroup>  
 		<PackageReference Include="AWSSDK.Core" Version="4.0.0.15" />  
 		<PackageReference Include="EasyUploader" Version="4.1.0" /> 
@@ -28,6 +24,10 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Core\Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="wwwroot\images\contents\" />
 	</ItemGroup>
 
 </Project>

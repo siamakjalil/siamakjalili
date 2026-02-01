@@ -2,18 +2,20 @@
 @model List<Core.Models.Experience>
 <section class="experience">
     <div class="row justify-content-lg-center">
-        <h2>
-            Experience
-        </h2> 
-        <div class="col-12 col-lg-10">
+        <div class="col-12">
+            <h2>
+                Experiences
+            </h2>
+        </div>
+        <div class="col-12 col-lg-12 col-xl-10">
             <div class="row justify-content-center experience-cards">
-                @foreach(var item in Model)
+                @foreach (var item in Model)
                 {
                     <div class="col-12 col-lg-6">
                         <div class="card h-100">
                             <div class="card-body">
                                 <div class="head-section">
-                                    <img src="@ImgPath.Images@item.Image" alt="@item.Title.AltBuilder()"/>
+                                    <img src="@ImgPath.Images@item.Image" alt="@item.Title.AltBuilder()" />
                                     <div class="head-text">
                                         <h3>@item.Title</h3>
                                         <p>
@@ -25,8 +27,8 @@
                                     @Html.Raw(item.Text)
                                     @if (!string.IsNullOrEmpty(item.Url))
                                     {
-                                        <br/>
-                                        <br/>
+                                        <br />
+                                        <br />
                                         <a href="@item.Url" target="_blank">@item.Url</a>
                                     }
                                 </div>
@@ -36,5 +38,5 @@
                 }
             </div>
         </div>
-    </div> 
+    </div>
 </section>

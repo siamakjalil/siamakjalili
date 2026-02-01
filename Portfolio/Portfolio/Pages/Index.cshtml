@@ -5,12 +5,24 @@
     ViewData["Title"] = "Home page";
 }
 
-<header>
+<header id="header">
     <partial name="_Heading" />
 </header>
-<partial name="_About" />
-<partial name="_Experience" model="@Model.Experiences.Where(u=>u.ExperienceType == ExperienceType.Experience).ToList()"/>
-<partial name="_Skills" model="Model.Skills"/>
-<partial name="_LatestProjects" model="@Model.Experiences.Where(u=>u.ExperienceType == ExperienceType.LatestProjects).ToList()"/>
-<partial name="_OtherProjects" model="@Model.Experiences.Where(u => u.ExperienceType == ExperienceType.OtherProjects).ToList()" />
-<partial name="_Contact" />
+<div id="about">
+    <partial name="_About" />
+</div>
+<div id="experiences">
+    <partial name="_Experience" model="@Model.Experiences.Where(u => u.ExperienceType == ExperienceType.Experience).ToList()" />
+</div>
+<div id="skills">
+    <partial name="_Skills" model="Model.Skills" />
+</div>
+<div id="latestProjects">
+    <partial name="_LatestProjects" model="@Model.Experiences.Where(u => u.ExperienceType == ExperienceType.LatestProjects).ToList()" />
+</div>
+<div id="otherProjects">
+    <partial name="_OtherProjects" model="@Model.Experiences.Where(u => u.ExperienceType == ExperienceType.OtherProjects).ToList()" />
+</div>
+<div id="contact">
+    <partial name="_Contact" />
+</div>
