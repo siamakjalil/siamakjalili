@@ -17,6 +17,10 @@ namespace Portfolio.Pages.Forms
         public IFormFile? ImgUp { get; set; }
         public async Task<IActionResult> OnGet(int? id)
         {
+            if (!Access.Edit())
+            {
+                return NotFound();
+            }
             if (id != null && id != 0)
             {
                 Experience = await portfolioDbContext.Experiences.FindAsync(id);
@@ -33,6 +37,10 @@ namespace Portfolio.Pages.Forms
         }
         public async Task<IActionResult> OnPost()
         {
+            if (!Access.Edit())
+            {
+                return NotFound();
+            }
             if (!ModelState.IsValid)
             {
                 return Page();
