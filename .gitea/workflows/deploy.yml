@@ -1,0 +1,100 @@
+name: Deploy Portfolio
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Linux tools
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y jq openssh-client
+        shell: bash
+
+      - name: Install .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore solution
+        run: dotnet restore "$GITHUB_WORKSPACE/Portfolio/Portfolio.slnx"
+        shell: bash
+
+      - name: Publish application
+        run: |
+          set -euo pipefail
+          dotnet publish "$GITHUB_WORKSPACE/Portfolio/Portfolio/Portfolio.csproj" \
+            --configuration Release \
+            --output "$GITHUB_WORKSPACE/publish" \
+            --no-restore
+          test -f "$GITHUB_WORKSPACE/publish/Portfolio.dll"
+          find "$GITHUB_WORKSPACE/publish" -type f -name 'appsettings*.json' -delete
+        shell: bash
+
+      - name: Deploy to server
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          APPSETTINGS_JSON: ${{ secrets.APPSETTINGS_JSON }}
+          IMAGE_TAG: ${{ github.sha }}
+          REMOTE_DIR: /home/devops/apps/siamakjalili
+        run: |
+          set -euo pipefail
+          : "${DEPLOY_HOST:?DEPLOY_HOST secret is required}"
+          : "${DEPLOY_USER:?DEPLOY_USER secret is required}"
+          : "${DEPLOY_SSH_KEY:?DEPLOY_SSH_KEY secret is required}"
+          : "${DEPLOY_KNOWN_HOSTS:?DEPLOY_KNOWN_HOSTS secret is required}"
+          : "${APPSETTINGS_JSON:?APPSETTINGS_JSON secret is required}"
+
+          ssh_dir="$RUNNER_TEMP/deploy-ssh"
+          settings_file="$RUNNER_TEMP/appsettings.json"
+          mkdir -p "$ssh_dir"
+          chmod 700 "$ssh_dir"
+          trap 'rm -f "$settings_file" "$ssh_dir/deploy_key" "$ssh_dir/known_hosts"' EXIT
+
+          umask 077
+          printf '%s\n' "$DEPLOY_SSH_KEY" > "$ssh_dir/deploy_key"
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$ssh_dir/known_hosts"
+          printf '%s' "$APPSETTINGS_JSON" > "$settings_file"
+          chmod 600 "$ssh_dir/deploy_key" "$ssh_dir/known_hosts" "$settings_file"
+          jq -e -s 'length == 1 and (.[0] | type == "object")' "$settings_file" > /dev/null
+
+          ssh_options=(
+            -i "$ssh_dir/deploy_key"
+            -o IdentitiesOnly=yes
+            -o BatchMode=yes
+            -o StrictHostKeyChecking=yes
+            -o "UserKnownHostsFile=$ssh_dir/known_hosts"
+          )
+          target="$DEPLOY_USER@$DEPLOY_HOST"
+
+          ssh "${ssh_options[@]}" "$target" "mkdir -p '$REMOTE_DIR/deploy'"
+          ssh "${ssh_options[@]}" "$target" \
+            "umask 077; tmp=\$(mktemp '$REMOTE_DIR/.appsettings.json.XXXXXX'); trap 'rm -f \"\$tmp\"' EXIT; cat > \"\$tmp\"; chmod 600 \"\$tmp\"; mv -f \"\$tmp\" '$REMOTE_DIR/appsettings.json'; trap - EXIT" \
+            < "$settings_file"
+
+          scp "${ssh_options[@]}" -r \
+            "$GITHUB_WORKSPACE/publish" \
+            "$GITHUB_WORKSPACE/Dockerfile" \
+            "$GITHUB_WORKSPACE/.dockerignore" \
+            "$target:$REMOTE_DIR/"
+          scp "${ssh_options[@]}" \
+            "$GITHUB_WORKSPACE/deploy/docker-compose.yml" \
+            "$target:$REMOTE_DIR/deploy/docker-compose.yml"
+
+          ssh "${ssh_options[@]}" "$target" \
+            "cd '$REMOTE_DIR' && IMAGE_TAG='$IMAGE_TAG' APP_UID=\"\$(id -u)\" APP_GID=\"\$(id -g)\" docker compose -f deploy/docker-compose.yml up -d --build --force-recreate"
+          ssh "${ssh_options[@]}" "$target" \
+            "test \"\$(docker inspect --format='{{.State.Running}}' portfolio)\" = true"
+        shell: bash
