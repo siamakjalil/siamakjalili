@@ -19,6 +19,12 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapGet("/index.html", context =>
+{
+    context.Response.StatusCode = StatusCodes.Status301MovedPermanently;
+    context.Response.Headers.Location = "/";
+    return Task.CompletedTask;
+});
 app.MapStaticAssets();
 app.MapRazorPages()
    .WithStaticAssets();

@@ -1,0 +1,49 @@
+﻿/* Open Sans Cyrillic Font Family - Weights 300 to 800 */
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans-cyrillic-300-normal.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans-cyrillic-400-normal.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans-cyrillic-500-normal.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans-cyrillic-600-normal.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans-cyrillic-700-normal.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/open-sans-cyrillic-800-normal.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+} 
